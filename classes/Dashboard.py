@@ -13,6 +13,7 @@ class Dashboard(Font):
         self.coins = 0
         self.ticks = 0
         self.time = 0
+        self.mario = ""
 
     def update(self):
         self.drawText("MARIO", 50, 20, 15)
@@ -31,7 +32,10 @@ class Dashboard(Font):
         self.ticks += 1
         if self.ticks == 60:
             self.ticks = 0
-            self.time += 1
+            self.time -= 1
+
+        if self.mario and self.time == 0:
+            self.mario.gameOver()
 
     def drawText(self, text, x, y, size):
         for char in text:
