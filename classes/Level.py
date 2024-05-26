@@ -20,6 +20,7 @@ class Level:
         self.screen = screen
         self.level = None
         self.levelLength = 0
+        self.duration = 0
         self.entityList = []
 
     def loadLevel(self, levelname):
@@ -29,6 +30,7 @@ class Level:
             self.loadObjects(data)
             self.loadEntities(data)
             self.levelLength = data["length"]
+            self.duration = data["duration"]
 
     def loadEntities(self, data):
         try:

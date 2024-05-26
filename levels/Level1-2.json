@@ -1,6 +1,7 @@
 {
     "id":1,
     "length":60,
+    "duration": 400,
     "level":{
         "objects": {
                 "bush":[
