@@ -204,6 +204,38 @@
                     16
                 ]
             }
+        },
+        "entities": {
+            "CoinBox": [],
+            "coinBrick": [
+                [
+                    2,
+                    9
+                ],
+                [
+                    4,
+                    9
+                ]
+            ],
+            "coin": [],
+            "Goomba": [
+                [
+                    12,
+                    14
+                ],
+                [
+                    12,
+                    16
+                ]
+            ],
+            "Koopa": [],
+            "RandomBox": [
+                [
+                    3,
+                    9,
+                    "RedMushroom"
+                ]
+            ]
         }
     }
 }
