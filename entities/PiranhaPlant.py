@@ -18,7 +18,7 @@ class PiranhaPlant(EntityBase):
             self.spriteCollection.get("piranhaOpen").image,
             14
         )
-        self.type = "Block"
+        self.type = "Mob"
         self.triggered = False
         self.time = 0
         self.maxTime = 10
