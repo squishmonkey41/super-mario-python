@@ -125,15 +125,7 @@ class Mario(EntityBase):
                 mob.leftrightTrait.direction = 1
                 self.sound.play_sfx(self.sound.kick)
         elif collisionState.isColliding and mob.alive and not self.invincibilityFrames:
-            if self.powerUpState == 0:
-                self.gameOver()
-            elif self.powerUpState == 1:
-                self.powerUpState = 0
-                self.traits['goTrait'].updateAnimation(smallAnimation)
-                x, y = self.rect.x, self.rect.y
-                self.rect = pygame.Rect(x, y + 32, 32, 32)
-                self.invincibilityFrames = 60
-                self.sound.play_sfx(self.sound.pipe)
+            self.powerDownOrGameOver()
 
     def bounce(self):
         self.traits["bounceTrait"].jump = True
@@ -186,3 +178,14 @@ class Mario(EntityBase):
                 self.traits['goTrait'].updateAnimation(bigAnimation)
                 self.rect = pygame.Rect(self.rect.x, self.rect.y-32, 32, 64)
                 self.invincibilityFrames = 20
+
+    def powerDownOrGameOver(self):
+        if self.powerUpState == 0:
+            self.gameOver()
+        elif self.powerUpState == 1:
+            self.powerUpState = 0
+            self.traits['goTrait'].updateAnimation(smallAnimation)
+            x, y = self.rect.x, self.rect.y
+            self.rect = pygame.Rect(x, y + 32, 32, 32)
+            self.invincibilityFrames = 60
+            self.sound.play_sfx(self.sound.pipe)
