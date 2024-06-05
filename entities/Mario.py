@@ -8,6 +8,7 @@ from classes.Input import Input
 from classes.Sprites import Sprites
 from entities.EntityBase import EntityBase
 from entities.Mushroom import RedMushroom
+from entities.PiranhaPlant import PiranhaPlant
 from traits.bounce import bounceTrait
 from traits.go import GoTrait
 from traits.jump import JumpTrait
@@ -103,6 +104,8 @@ class Mario(EntityBase):
             self.powerup(1)
             self.killEntity(mob)
             self.sound.play_sfx(self.sound.powerup)
+        elif isinstance(mob, PiranhaPlant):
+            self.powerDownOrGameOver()
         elif collisionState.isTop and (mob.alive or mob.bouncing):
             self.sound.play_sfx(self.sound.stomp)
             self.rect.bottom = mob.rect.top
