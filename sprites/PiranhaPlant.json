@@ -1,0 +1,23 @@
+{
+    "spriteSheetURL": "./img/characters.gif",
+    "type":"character",
+    "size":[16,32],
+    "sprites":[
+        {
+            "name":"piranhaClosed",
+            "x":125, 
+            "y":171,
+            "scalefactor":2,
+            "colorKey":-1,
+            "collision":false
+        },
+        {
+            "name":"piranhaOpen",
+            "x":144, 
+            "y":171,
+            "scalefactor":2,
+            "colorKey":-1,
+            "collision":false
+        }
+    ]
+}
