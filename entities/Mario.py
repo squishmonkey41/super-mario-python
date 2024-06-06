@@ -127,7 +127,7 @@ class Mario(EntityBase):
                 mob.rect.x += 5
                 mob.leftrightTrait.direction = 1
                 self.sound.play_sfx(self.sound.kick)
-        elif collisionState.isColliding and mob.alive and not self.invincibilityFrames:
+        elif collisionState.isColliding and mob.alive:
             self.powerDownOrGameOver()
 
     def bounce(self):
@@ -183,7 +183,7 @@ class Mario(EntityBase):
                 self.invincibilityFrames = 20
 
     def powerDownOrGameOver(self):
-        if self.powerUpState == 0:
+        if self.powerUpState == 0 and not self.invincibilityFrames:
             self.gameOver()
         elif self.powerUpState == 1:
             self.powerUpState = 0
