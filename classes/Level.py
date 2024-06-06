@@ -41,10 +41,10 @@ class Level:
                 [self.addGoomba(x, y) for x, y in data["level"]["entities"]["Goomba"]]
             if "Koopa" in data["level"]["entities"]:
                 [self.addKoopa(x, y) for x, y in data["level"]["entities"]["Koopa"]]
-            if "coin" in data["level"]["entities"]:
-                [self.addCoin(x, y) for x, y in data["level"]["entities"]["coin"]]
-            if "coinBrick" in data["level"]["entities"]:
-                [self.addCoinBrick(x, y) for x, y in data["level"]["entities"]["coinBrick"]]
+            if "Coin" in data["level"]["entities"]:
+                [self.addCoin(x, y) for x, y in data["level"]["entities"]["Coin"]]
+            if "CoinBrick" in data["level"]["entities"]:
+                [self.addCoinBrick(x, y) for x, y in data["level"]["entities"]["CoinBrick"]]
             if "RandomBox" in data["level"]["entities"]:
                 [self.addRandomBox(x, y, item) for x, y, item in data["level"]["entities"]["RandomBox"]]
             if "PiranhaPlant" in data["level"]["entities"]:
