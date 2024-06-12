@@ -34,6 +34,38 @@
             "scalefactor":2,
             "colorKey":-1,
             "collision":false
+        },
+        {
+            "name":"koopa-flying-1",
+            "x":52,
+            "y":0,
+            "scalefactor":2,
+            "colorKey":-1,
+            "collision":false
+        },
+        {
+            "name":"koopa-flying-2",
+            "x":70,
+            "y":0,
+            "scalefactor":2,
+            "colorKey":-1,
+            "collision":false
+        },
+        {
+            "name":"koopa-flying-3",
+            "x":93,
+            "y":0,
+            "scalefactor":2,
+            "colorKey":-1,
+            "collision":false
+        },
+        {
+            "name":"koopa-flying-4",
+            "x":111,
+            "y":0,
+            "scalefactor":2,
+            "colorKey":-1,
+            "collision":false
         }
     ]
 }

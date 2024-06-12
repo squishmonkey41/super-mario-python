@@ -8,6 +8,7 @@ from entities.CoinBrick import CoinBrick
 from entities.Goomba import Goomba
 from entities.Mushroom import RedMushroom
 from entities.Koopa import Koopa
+from entities.KoopaParatroopa import KoopaParatroopa
 from entities.CoinBox import CoinBox
 from entities.RandomBox import RandomBox
 from entities.PiranhaPlant import PiranhaPlant
@@ -41,6 +42,8 @@ class Level:
                 [self.addGoomba(x, y) for x, y in data["level"]["entities"]["Goomba"]]
             if "Koopa" in data["level"]["entities"]:
                 [self.addKoopa(x, y) for x, y in data["level"]["entities"]["Koopa"]]
+            if "KoopaParatroopa" in data["level"]["entities"]:
+                [self.addKoopaParatroopa(x, y) for x, y in data["level"]["entities"]["KoopaParatroopa"]]
             if "Coin" in data["level"]["entities"]:
                 [self.addCoin(x, y) for x, y in data["level"]["entities"]["Coin"]]
             if "CoinBrick" in data["level"]["entities"]:
@@ -220,6 +223,11 @@ class Level:
     def addKoopa(self, x, y):
         self.entityList.append(
             Koopa(self.screen, self.sprites.spriteCollection, x, y, self, self.sound)
+        )
+
+    def addKoopaParatroopa(self, x, y):
+        self.entityList.append(
+            KoopaParatroopa(self.screen, self.sprites.spriteCollection, x, y, self, self.sound)
         )
 
     def addRedMushroom(self, x, y):

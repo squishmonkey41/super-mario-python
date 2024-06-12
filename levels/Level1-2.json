@@ -240,8 +240,12 @@
                 [11, 27],
                 [11, 25]
             ],
+            "KoopaParatroopa": [
+                [7, 27],
+                [7, 25]
+            ],
             "RandomBox": [
-                [
+              [
                     3,
                     9,
                     "RedMushroom"
