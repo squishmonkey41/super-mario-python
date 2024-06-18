@@ -31,81 +31,34 @@ class KoopaParatroopa(Koopa):
         self.levelObj = level
         self.sound = sound
         self.obeyGravity = False
+        self.demotingFrames = 0
 
 
     def update(self, camera):
         if self.alive and self.active:
             self.updateAlive(camera)
             self.checkEntityCollision()
-        elif self.alive and self.obeyGravity == False:
-            self.demoteToRegularKoopa(camera)
         elif self.alive and not self.active and not self.bouncing:
             self.sleepingInShell(camera)
             self.checkEntityCollision()
         elif self.bouncing:
             self.shellBouncing(camera)
 
-    def demoteToRegularKoopa(self, camera):
-        print("demoting")
+    def demoteToKoopa(self, camera):
         self.obeyGravity = True
-        self.animation = Animation(
-            [
-                self.spriteCollection.get("koopa-1").image,
-                self.spriteCollection.get("koopa-2").image,
-            ]
-        )
-        print("done demoting")
+        if self.timer < self.timeAfterDeath:
+            animation = self.animation = Animation(
+                [
+                    self.spriteCollection.get("koopa-1").image,
+                    self.spriteCollection.get("koopa-2").image,
+                ]
+            )
+            self.screen.blit(
+                animation.image,
+                (self.rect.x + camera.x, self.rect.y - 32),
+            )
+        self.applyGravity()
+        self.demotingFrames = 60
 
-    # def drawKoopa(self, camera):
-    #     if self.leftrightTrait.direction == -1:
-    #         self.screen.blit(
-    #             self.animation.image, (self.rect.x + camera.x, self.rect.y - 32)
-    #         )
-    #     else:
-    #         self.screen.blit(
-    #             pygame.transform.flip(self.animation.image, True, False),
-    #             (self.rect.x + camera.x, self.rect.y - 32),
-    #         )
-
-    # def shellBouncing(self, camera):
-    #     self.leftrightTrait.speed = 4
-    #     self.applyGravity()
-    #     self.animation.image = self.spriteCollection.get("koopa-hiding").image
-    #     self.drawKoopa(camera)
-    #     self.leftrightTrait.update()
-
-    # def sleepingInShell(self, camera):
-    #     if self.timer < self.timeAfterDeath:
-    #         self.screen.blit(
-    #             self.spriteCollection.get("koopa-hiding").image,
-    #             (self.rect.x + camera.x, self.rect.y - 32),
-    #         )
-    #     else:
-    #         self.alive = True
-    #         self.active = True
-    #         self.bouncing = False
-    #         self.timer = 0
-    #     self.timer += 0.1
-
-    # def updateAlive(self, camera):
-    #     self.applyGravity()
-    #     self.drawKoopa(camera)
-    #     self.animation.update()
-    #     self.leftrightTrait.update()
-
-    # def checkEntityCollision(self):
-    #     for ent in self.levelObj.entityList:
-    #         if ent is not self:
-    #             collisionState = self.EntityCollider.check(ent)
-    #             if collisionState.isColliding:
-    #                 if ent.type == "Mob":
-    #                     self._onCollisionWithMob(ent, collisionState)
-
-    def _onCollisionWithMob(self, mob, collisionState):
-        if self.obeyGravity == False:
-            self.obeyGravity = True
-            return
-        if collisionState.isColliding and mob.bouncing:
-            print("dead")
-            self.alive = False
-            self.sound.play_sfx(self.sound.brick_bump)
+    def isFlying(self):
+        return self.obeyGravity == False

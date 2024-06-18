@@ -7,6 +7,8 @@ from classes.EntityCollider import EntityCollider
 from classes.Input import Input
 from classes.Sprites import Sprites
 from entities.EntityBase import EntityBase
+from entities.Koopa import Koopa
+from entities.KoopaParatroopa import KoopaParatroopa
 from entities.Mushroom import RedMushroom
 from entities.PiranhaPlant import PiranhaPlant
 from traits.bounce import bounceTrait
@@ -110,7 +112,10 @@ class Mario(EntityBase):
             self.sound.play_sfx(self.sound.stomp)
             self.rect.bottom = mob.rect.top
             self.bounce()
-            self.killEntity(mob)
+            if isinstance(mob, KoopaParatroopa) and mob.isFlying():
+                mob.demoteToKoopa(self.camera)
+            else:
+                self.killEntity(mob)
         elif collisionState.isTop and mob.alive and not mob.active:
             self.sound.play_sfx(self.sound.stomp)
             self.rect.bottom = mob.rect.top
@@ -134,14 +139,14 @@ class Mario(EntityBase):
         self.traits["bounceTrait"].jump = True
 
     def killEntity(self, ent):
-        if ent.__class__.__name__ != "Koopa":
-            ent.alive = False
-        else:
+        if isinstance(ent, Koopa) or isinstance(ent, KoopaParatroopa):
             ent.timer = 0
             ent.leftrightTrait.speed = 1
             ent.alive = True
             ent.active = False
             ent.bouncing = False
+        else:
+            ent.alive = False
         self.dashboard.points += 100
 
     def gameOver(self):
