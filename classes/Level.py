@@ -43,7 +43,7 @@ class Level:
             if "Koopa" in data["level"]["entities"]:
                 [self.addKoopa(x, y) for x, y in data["level"]["entities"]["Koopa"]]
             if "KoopaParatroopa" in data["level"]["entities"]:
-                [self.addKoopaParatroopa(x, y) for x, y in data["level"]["entities"]["KoopaParatroopa"]]
+                [self.addKoopaParatroopa(koopaParatroopa) for koopaParatroopa in data["level"]["entities"]["KoopaParatroopa"]]
             if "Coin" in data["level"]["entities"]:
                 [self.addCoin(x, y) for x, y in data["level"]["entities"]["Coin"]]
             if "CoinBrick" in data["level"]["entities"]:
@@ -225,9 +225,9 @@ class Level:
             Koopa(self.screen, self.sprites.spriteCollection, x, y, self, self.sound)
         )
 
-    def addKoopaParatroopa(self, x, y):
+    def addKoopaParatroopa(self, koopaParatroopa):
         self.entityList.append(
-            KoopaParatroopa(self.screen, self.sprites.spriteCollection, x, y, self, self.sound)
+            KoopaParatroopa(self.screen, self.sprites.spriteCollection, koopaParatroopa['xMin'], koopaParatroopa['xMax'], koopaParatroopa['y'], self, self.sound)
         )
 
     def addRedMushroom(self, x, y):

@@ -247,11 +247,19 @@
                 [11, 25]
             ],
             "KoopaParatroopa": [
-                [7, 27],
-                [7, 25]
+                {
+                    "y": 7,
+                    "xMin": 7,
+                    "xMax": 17
+                },
+                {
+                    "y": 7,
+                    "xMin": 5,
+                    "xMax": 15
+                }
             ],
             "RandomBox": [
-              [
+                [
                     3,
                     9,
                     "RedMushroom"

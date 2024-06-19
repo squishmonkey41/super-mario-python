@@ -7,10 +7,11 @@ from classes.Maths import Vec2D
 from entities.EntityBase import EntityBase
 from traits.leftrightwalk import LeftRightWalkTrait
 from entities.Koopa import Koopa
+from traits.LeftRightConstrained import LeftRightConstrainedTrait
 
 class KoopaParatroopa(Koopa):
-    def __init__(self, screen, spriteColl, x, y, level, sound):
-        super(Koopa, self).__init__(y - 1, x, 1.25)
+    def __init__(self, screen, spriteColl, xMin, xMax, y, level, sound):
+        super(Koopa, self).__init__(y - 1, xMin, 1.25)
         self.spriteCollection = spriteColl
         self.animation = Animation(
             [
@@ -32,7 +33,9 @@ class KoopaParatroopa(Koopa):
         self.sound = sound
         self.obeyGravity = False
         self.demotingFrames = 0
-
+        self.traits = {
+            "LeftRightConstrainedTrait": LeftRightConstrainedTrait(xMin, xMax)
+        }
 
     def update(self, camera):
         if self.alive and self.active:
