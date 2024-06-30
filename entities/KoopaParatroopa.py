@@ -62,6 +62,7 @@ class KoopaParatroopa(Koopa):
             )
         self.applyGravity()
         self.demotingFrames = 60
+        self.traits["LeftRightConstrainedTrait"].reset()
 
     def isFlying(self):
         return self.obeyGravity == False

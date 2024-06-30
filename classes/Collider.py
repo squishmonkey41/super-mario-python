@@ -63,7 +63,7 @@ class Collider:
                             self.entity.vel.y = 0
 
     def rightLevelBorderReached(self):
-        if self.entity.traits is not None and "LeftRightConstrainedTrait" in self.entity.traits:
+        if self.entity.traits is not None and "LeftRightConstrainedTrait" in self.entity.traits and self.entity.traits["LeftRightConstrainedTrait"].xMax is not None:
             if self.entity.getPosIndexAsFloat().x > self.entity.traits["LeftRightConstrainedTrait"].xMax - 1:
                 self.entity.rect.x = (self.entity.traits["LeftRightConstrainedTrait"].xMax - 1) * 32
                 self.entity.vel.x = 0
@@ -75,7 +75,7 @@ class Collider:
             return True
 
     def leftLevelBorderReached(self):
-        if self.entity.traits is not None and "LeftRightConstrainedTrait" in self.entity.traits:
+        if self.entity.traits is not None and "LeftRightConstrainedTrait" in self.entity.traits and self.entity.traits["LeftRightConstrainedTrait"].xMin is not None:
             if self.entity.getPosIndexAsFloat().x < self.entity.traits["LeftRightConstrainedTrait"].xMin:
                 self.entity.rect.x = self.entity.traits["LeftRightConstrainedTrait"].xMin * 32
                 self.entity.vel.x = 0
