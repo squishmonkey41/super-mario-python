@@ -35,6 +35,14 @@ bigAnimation = Animation(
     spriteCollection["mario_big_idle"].image,
     spriteCollection["mario_big_jump"].image,
 )
+dyingAnimation = Animation(
+    [
+        spriteCollection["mario_dead"].image,
+        spriteCollection["mario_dead"].image,
+    ],
+    spriteCollection["mario_dead"].image,
+    spriteCollection["mario_dead"].image,
+)
 
 
 class Mario(EntityBase):
@@ -150,6 +158,7 @@ class Mario(EntityBase):
         self.dashboard.points += 100
 
     def gameOver(self):
+        self.traits['goTrait'].updateAnimation(dyingAnimation)
         srf = pygame.Surface((640, 480))
         srf.set_colorkey((255, 255, 255), pygame.RLEACCEL)
         srf.set_alpha(128)
