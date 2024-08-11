@@ -149,6 +149,24 @@
             "scalefactor":2,
             "collision":false,
             "colorKey": [0,0,0]
+        },
+        {
+            "name":"flagpoleTop",
+            "x":16,
+            "y":10,
+            "scalefactor":2,
+            "collision":true,
+            "redrawBg":true,
+            "colorKey": [0,0,0]
+        },
+        {
+            "name":"flagpoleBody",
+            "x":16,
+            "y":11,
+            "redrawBg":true,
+            "scalefactor":2,
+            "collision":true,
+            "colorKey": [0,0,0]
         }
     ] 
 }

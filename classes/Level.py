@@ -90,7 +90,9 @@ class Level:
                 self.sprites.spriteCollection.get("ground"),
                 pygame.Rect(x * 32, y * 32, 32, 32),
             )
-
+        x, y, z = data["level"]["objects"]["flagpole"]
+        self.addFlagpoleSprite(x, y, z)
+        
     def updateEntities(self, cam):
         for entity in self.entityList:
             entity.update(cam)
@@ -156,6 +158,22 @@ class Level:
             self.level[y][x + 2] = Tile(
                 self.sprites.spriteCollection.get("bush_3"), None
             )
+        except IndexError:
+            return
+        
+    def addFlagpoleSprite(self, x, y, length=2):
+        try:
+            # add flagpole top
+            self.level[y][x] = Tile(
+                self.sprites.spriteCollection.get("flagpoleTop"),
+                pygame.Rect(x * 32, y * 32, 32, 32),
+            )
+            # add flagpole body
+            for i in range(1, length):
+                self.level[y + i][x] = Tile(
+                    self.sprites.spriteCollection.get("flagpoleBody"),
+                    pygame.Rect(x * 32, (y + i) * 32, 32, 32),
+                )
         except IndexError:
             return
 
